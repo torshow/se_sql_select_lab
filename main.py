@@ -5,15 +5,14 @@ import pandas as pd
 conn = sqlite3.connect("data.sqlite")
 
 
-df_first_five = None
+df_first_five = pd.read_sql(""" SELECT employeeNumber, lastName FROM employees""", conn)
 
-# STEP 3
-# Replace None with your code
-df_five_reverse = None
 
-# STEP 4
-# Replace None with your code
-df_alias = None
+df_five_reverse = pd.read_sql(""" SELECT lastName, employeeNumber FROM employees""", conn)
+
+
+
+df_alias = pd.read_sql(""" SELECT lastName, employeeNumber AS Id FROM employees""",conn)
 
 # STEP 5
 # Replace None with your code
