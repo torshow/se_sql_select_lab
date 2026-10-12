@@ -29,13 +29,17 @@ df_executive = pd.read_sql("""
 df_name_length = pd.read_sql(""" SELECT LENGTH(lastName) AS name_length FROM employees """,conn).iloc[0, 0]
 
 
+df_short_title = pd.read_sql(""" SELECT SUBSTR(jobTitle, 1. 2) AS short_title FROM employees """, conn) 
 
-df_short_title = 
 
-# STEP 8
-# Replace None with your code
-sum_total_price = None
+sum_total_price = pd.read_sql("""SELECT SUM(ROUND(priceEach * quantityOrdered)) AS total FROM orderDetails""", conn).iloc[0, 0]
 
-# STEP 9
-# Replace None with your code
-df_day_month_year = None
+
+
+df_day_month_year = d.read_sql("""
+    SELECT orderDate,
+        SUBSTR(orderDate, 9, 2) AS day,
+        SUBSTR(orderDate, 6, 2) AS month,
+        SUBSTR(orderDate, 1, 4) AS year
+    FROM orders
+""", conn)
