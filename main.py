@@ -12,7 +12,7 @@ df_five_reverse = pd.read_sql(""" SELECT lastName, employeeNumber FROM employees
 
 
 
-df_alias = pd.read_sql(""" SELECT lastName, employeeNumber AS Id FROM employees""",conn)
+df_alias = pd.read_sql(""" SELECT lastName, employeeNumber AS ID FROM employees""",conn)
 
 
 df_executive = pd.read_sql(""" 
@@ -26,20 +26,30 @@ df_executive = pd.read_sql("""
 """,conn)
                                     
                             
-df_name_length = pd.read_sql(""" SELECT LENGTH(lastName) AS name_length FROM employees """,conn).iloc[0, 0]
+df_name_length = pd.read_sql(""" SELECT LENGTH(lastName) AS name_length FROM employees """,conn)
 
 
-df_short_title = pd.read_sql(""" SELECT SUBSTR(jobTitle, 1. 2) AS short_title FROM employees """, conn) 
+df_short_title = pd.read_sql(""" SELECT SUBSTR(jobTitle, 1, 2) AS short_title FROM employees """, conn) 
 
 
-sum_total_price = pd.read_sql("""SELECT SUM(ROUND(priceEach * quantityOrdered)) AS total FROM orderDetails""", conn).iloc[0, 0]
+sum_total_price = pd.read_sql("""SELECT SUM(ROUND(priceEach * quantityOrdered)) AS total FROM orderDetails""", conn).sum()
 
 
 
-df_day_month_year = d.read_sql("""
+df_day_month_year = pd.read_sql("""
     SELECT orderDate,
         SUBSTR(orderDate, 9, 2) AS day,
         SUBSTR(orderDate, 6, 2) AS month,
         SUBSTR(orderDate, 1, 4) AS year
     FROM orders
 """, conn)
+
+print(df_first_five)
+print(df_alias)
+print(df_executive)
+print(df_name_length)
+print(df_short_title)
+print(sum_total_price)
+print(df_day_month_year)
+
+conn.close()
