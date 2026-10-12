@@ -14,17 +14,23 @@ df_five_reverse = pd.read_sql(""" SELECT lastName, employeeNumber FROM employees
 
 df_alias = pd.read_sql(""" SELECT lastName, employeeNumber AS Id FROM employees""",conn)
 
-# STEP 5
-# Replace None with your code
-df_executive = None
 
-# STEP 6
-# Replace None with your code
-df_name_length = None
+df_executive = pd.read_sql(""" 
+    SELECt *, 
+        CASE 
+            WHEN jobTitle = 'President' OR jobTitle = 'VP Sales' OR jobTitle = 'VP Marketing' 
+            Then 'Executive' 
+            ELSE 'Not Executive'
+        END AS role
+     FROM employees 
+""",conn)
+                                    
+                            
+df_name_length = pd.read_sql(""" SELECT LENGTH(lastName) AS name_length FROM employees """,conn).iloc[0, 0]
 
-# STEP 7
-# Replace None with your code
-df_short_title = None
+
+
+df_short_title = 
 
 # STEP 8
 # Replace None with your code
