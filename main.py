@@ -1,13 +1,10 @@
-# STEP 1A
-# Import SQL Library and Pandas
-
-# STEP 1B
-# Connect to the database
-conn = None
+import sqlite3
+import pandas as pd
 
 
-# STEP 2
-# Replace None with your code
+conn = sqlite3.connect("data.sqlite")
+
+
 df_first_five = None
 
 # STEP 3
